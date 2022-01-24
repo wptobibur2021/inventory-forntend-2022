@@ -1,11 +1,8 @@
-import {useEffect} from "react";
 import axios from "axios";
 import useNotification from "./useNotification";
-import {upload} from "@testing-library/user-event/dist/upload";
-import {dark} from "@mui/material/styles/createPalette";
 
 const UseAPI = () =>{
-    const url = "http://localhost:7080/api/"
+    const url = "https://shielded-retreat-11538.herokuapp.com/api/"
     const {successNotify, errorNotify} = useNotification()
     /*
     * ===============
