@@ -40,83 +40,6 @@ const LeftSideBar = () => {
                         </ListItemButton>
                     </Link>
                     <Divider />
-                    {/* Product Menu */}
-                    <ListItemButton onClick={handleClick}>
-                        <ListItemIcon>
-                            <Inventory2 />
-                        </ListItemIcon>
-                        <ListItemText primary="Product" />
-                        {open ? <ExpandLess /> : <ExpandMore />}
-                    </ListItemButton>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/add-product">
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <AddBox />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Add Product" />
-                                </ListItemButton>
-                            </Link>
-                            <Divider />
-                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/list-product">
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <ViewList />
-                                    </ListItemIcon>
-                                    <ListItemText primary="List Product" />
-                                </ListItemButton>
-                            </Link>
-                        </List>
-                    </Collapse>
-                    <Divider />
-                    {/* Stock Menu */}
-                    <ListItemButton onClick={handleStock}>
-                        <ListItemIcon>
-                            <Inventory2 />
-                        </ListItemIcon>
-                        <ListItemText primary="Stock Management" />
-                        {stock ? <ExpandLess /> : <ExpandMore />}
-                    </ListItemButton>
-                    <Collapse in={stock} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/add-stock">
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <AddBox />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Add Stock" />
-                                </ListItemButton>
-                            </Link>
-                            <Divider />
-                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/list-product">
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <ViewList />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Product Stock" />
-                                </ListItemButton>
-                            </Link>
-                        </List>
-                    </Collapse>
-                    <Divider />
-                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/add-order">
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <ShoppingCart />
-                            </ListItemIcon>
-                            <ListItemText primary="Add Order" />
-                        </ListItemButton>
-                    </Link>
-                    <Divider />
-                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/all-order">
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <ShoppingCart />
-                            </ListItemIcon>
-                            <ListItemText primary="All Orders" />
-                        </ListItemButton>
-                    </Link>
                     <Divider />
                     {/*Category Menu*/}
                     <ListItemButton onClick={handleCat}>
@@ -208,6 +131,65 @@ const LeftSideBar = () => {
                             </ListItemButton>
                         </List>
                     </Collapse>
+                    {/* Product Menu */}
+                    <ListItemButton onClick={handleClick}>
+                        <ListItemIcon>
+                            <Inventory2 />
+                        </ListItemIcon>
+                        <ListItemText primary="Product" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/add-product">
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <AddBox />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Add Product" />
+                                </ListItemButton>
+                            </Link>
+                            <Divider />
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/list-product">
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <ViewList />
+                                    </ListItemIcon>
+                                    <ListItemText primary="List Product" />
+                                </ListItemButton>
+                            </Link>
+                        </List>
+                    </Collapse>
+                    <Divider />
+                    {/* Stock Menu */}
+                    <ListItemButton onClick={handleStock}>
+                        <ListItemIcon>
+                            <Inventory2 />
+                        </ListItemIcon>
+                        <ListItemText primary="Stock Management" />
+                        {stock ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={stock} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/add-stock">
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <AddBox />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Add Stock" />
+                                </ListItemButton>
+                            </Link>
+                            <Divider />
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/list-stock">
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <ViewList />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Product Stock" />
+                                </ListItemButton>
+                            </Link>
+                        </List>
+                    </Collapse>
                     <Divider />
                     <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/cart">
                         <ListItemButton>
@@ -215,6 +197,24 @@ const LeftSideBar = () => {
                                 <ShoppingCart />
                             </ListItemIcon>
                             <ListItemText primary="Cart" />
+                        </ListItemButton>
+                    </Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/add-order">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <ShoppingCart />
+                            </ListItemIcon>
+                            <ListItemText primary="Add Order" />
+                        </ListItemButton>
+                    </Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/all-order">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <ShoppingCart />
+                            </ListItemIcon>
+                            <ListItemText primary="All Orders" />
                         </ListItemButton>
                     </Link>
                     <Divider />

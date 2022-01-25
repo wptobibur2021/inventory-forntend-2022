@@ -17,6 +17,7 @@ import UpdateOrder from "../Components/Order/UpdateOrder";
 import ListBrand from "../Components/Brand/ListBrand";
 import Income from "../Components/Income/Income";
 import Sales from "../Components/Sales/Sales";
+import ListStock from "../Components/Stock/ListStock";
 const RouterNav = () => {
     return (
         <BrowserRouter>
@@ -25,6 +26,8 @@ const RouterNav = () => {
                     {/* Product Route */}
                     <Route path="/Dashboard/add-product" element={<AddProduct />} />
                     <Route path="/Dashboard/list-product" element={< ListProduct/>} />
+                    {/* Stock Product */}
+                    <Route path="/Dashboard/list-stock" element={<ListStock/>} />
                     {/*Category Route*/}
                     <Route path="/Dashboard/add-category" element={<AddCategory />} />
                     <Route path="/Dashboard/list-category" element={<ListCategory />} />

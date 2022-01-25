@@ -100,7 +100,6 @@ export default function ListProduct() {
                         pageSize={10}
                         getRowId={(row)=>row._id}
                         rowsPerPageOptions={[5]}
-                        // checkboxSelection
                     />
                 </div>
             </Paper>
