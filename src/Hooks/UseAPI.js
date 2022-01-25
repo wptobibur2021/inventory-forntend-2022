@@ -258,7 +258,6 @@ const UseAPI = () =>{
 
     // Stock Update By Item
     const stockUpdate = (id, data) =>{
-        console.log('Stock Id: ', id, "Update Data:", data)
         try{
             axios.put(url+ 'stock/update/' + id, data).then(res=>{
                 if(res.data){
@@ -310,15 +309,14 @@ const UseAPI = () =>{
     }
 
     const orderGet = (setOrders, employeeId) =>{
-        console.log('Query UPI: ', employeeId)
         try{
             console.log('Query: ', employeeId)
             let queryUrl
             if(employeeId !== 0){
-                queryUrl = `http://localhost:7080/api/order/all?employeeId=${employeeId}`
+                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/all?employeeId=${employeeId}`
                 console.log('Query: ', queryUrl)
             }else {
-                queryUrl = `http://localhost:7080/api/order/all`
+                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/all`
                 console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{
@@ -363,10 +361,10 @@ const UseAPI = () =>{
         try{
             let queryUrl
             if(employeeId !== 0){
-                queryUrl = `http://localhost:7080/api/order/sales?employeeId=${employeeId}`
+                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/sales?employeeId=${employeeId}`
                 console.log('Query: ', queryUrl)
             }else {
-                queryUrl = `http://localhost:7080/api/order/sales`
+                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/sales`
                 console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{
