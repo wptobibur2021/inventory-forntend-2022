@@ -14,23 +14,31 @@ const style = {
     p: 4,
 };
 const UpdateModal = ({open, handleClose, data, orderId, order}) => {
-    const [returnQty, setReturnQty] = useState('1')
-    const [damageQty, setDamageQty] = useState('1')
+    const [returnQty, setReturnQty] = useState(data.returnPro)
+    const [damageQty, setDamageQty] = useState(data.damagePro)
     const [returnComment, setReturnComment] = useState('')
     const [damageComment, setDamageComment] = useState('')
-    console.log('Data: ', data)
-    console.log('Order: ', order)
     const{damageCreate, returnStockUpdate, returnCreate, updateOrder} = UseAPI()
     const navigate = useNavigate()
     const productId = data.productId._id
-    console.log('Product Id: ', productId)
     let price = 0
     const filterData = order?.carts?.filter((cart) => cart.productId._id !== productId)
-    console.log('Filter: ', filterData)
     filterData?.map((cart)=>{
         price+=cart.totalPrice
     })
-   console.log('Demo Price: ', price)
+
+   // useEffect(()=>{
+   //     let price = 0
+   //     const filterData = order?.carts?.filter((cart) => cart.productId._id !== productId)
+   //     console.log('Filter: ', filterData)
+   //     filterData?.map((cart)=>{
+   //         price+=cart.totalPrice
+   //     })
+   //     setUpdatePrice(price)
+   //     console.log('Demo Price: ', price)
+   // },[returnQty,damageQty, order])
+   //
+   //  console.log('Previous Price: ', updatePrice)
 
     const bookHandle = e =>{
         const productId = data.productId._id
@@ -53,7 +61,6 @@ const UpdateModal = ({open, handleClose, data, orderId, order}) => {
         const salesPro = data.qty - (parseInt(damageQty)+ parseInt(returnQty))
         const cartPrice = salesPro * data.salesPrice
         const totalPrice = price + cartPrice
-
         const dataProductId = {
             cartId: data._id,
             damagePro: damageQty,
@@ -66,9 +73,10 @@ const UpdateModal = ({open, handleClose, data, orderId, order}) => {
         damageCreate(damageInfo,e)
         returnCreate(returnInfo,e)
         updateOrder(orderId, dataProductId)
-        // navigate('/dashboard')
+        navigate('/dashboard/all-order')
         handleClose()
     }
+
     return (
         <Modal
             keepMounted
