@@ -43,7 +43,7 @@ export default function ListProduct() {
                 return (
                     <div className="productListItem">
                         {/*<img className="productListImg" src={imgUrl + params.row.img} alt={params.row.productName} />*/}
-                        {params.row.productName}
+                        {params?.row?.productName}
                     </div>
                 );
             },
@@ -60,7 +60,7 @@ export default function ListProduct() {
         {   field: 'brandName', headerName: 'Brand Name', width: 130, renderCell: (params) => {
                 return (
                     <Typography variant="p">
-                        {params.row.brandId.brandName}
+                        {params?.row?.brandId?.brandName}
                     </Typography>
                 );
             },
