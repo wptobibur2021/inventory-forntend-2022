@@ -413,7 +413,29 @@ const UseAPI = () =>{
         }
     }
 
+    /*
+    * ===============
+    *   Login API API DECLARATION
+    * ===============
+    */
 
-    return{salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
+    const userLogin = (data, dispatch, navigate) =>{
+        dispatch({type: "LOGIN_START"})
+        try{
+            axios.post(url + 'user/login', data).then(res=>{
+                if(res.data){
+                    dispatch({type: "LOGIN_SUCCESS", payload: res.data})
+                    navigate('/dashboard')
+                    successNotify('User login has been successfully')
+                }
+            })
+        }catch(e){
+            errorNotify(e.response.message)
+        }
+    }
+
+
+
+    return{userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
 }
 export default UseAPI

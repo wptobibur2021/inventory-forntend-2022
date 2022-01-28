@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Grid, Box, Typography,Paper, FormControl, TextField, Button} from '@mui/material'
 import {useForm} from "react-hook-form";
+import UseAPI from "../../Hooks/UseAPI";
+import {AuthContext} from "../../Context/AuthContext";
+import {useNavigate} from 'react-router-dom'
 const Login = () => {
+    const {userLogin} = UseAPI()
+    const navigate = useNavigate()
+    const {isFetching, dispatch} = useContext(AuthContext)
     const { register, handleSubmit} = useForm();
     const onSubmit = (data,e) =>{
         console.log('Date: ', data)
+        userLogin(data, dispatch, navigate)
     }
     return (
         <Box sx={{ flexGrow: 1 }}>
