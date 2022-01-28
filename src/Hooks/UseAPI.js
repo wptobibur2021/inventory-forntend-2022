@@ -415,7 +415,7 @@ const UseAPI = () =>{
 
     /*
     * ===============
-    *   Login API API DECLARATION
+    * Auth API DECLARATION
     * ===============
     */
 
@@ -434,8 +434,15 @@ const UseAPI = () =>{
         }
     }
 
+    const userLogOut = (navigate) =>{
+        localStorage.removeItem("user");
+        navigate('/')
+        successNotify('User Logout Successfully')
+    }
 
 
-    return{userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
+
+
+    return{userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
 }
 export default UseAPI

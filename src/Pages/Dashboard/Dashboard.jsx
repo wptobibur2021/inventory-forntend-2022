@@ -3,6 +3,7 @@ import {Box, Grid, Container} from "@mui/material";
 import TopBar from "../../Components/TopBar/TopBar";
 import LeftSideBar from "../../Components/LeftSideBar/LeftSideBar";
 import { Outlet } from "react-router-dom";
+import Footer from "../../Components/Footer";
 const Dashboard = () => {
     return (
         <Box>
@@ -16,7 +17,7 @@ const Dashboard = () => {
                 </Grid>
             </Box>
             <Box>
-                <h1>Footer</h1>
+                <Footer></Footer>
             </Box>
         </Box>
     );

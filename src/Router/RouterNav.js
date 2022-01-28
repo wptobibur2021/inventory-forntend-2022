@@ -19,12 +19,13 @@ import Income from "../Components/Income/Income";
 import Sales from "../Components/Sales/Sales";
 import ListStock from "../Components/Stock/ListStock";
 import Login from "../Pages/Login/Login";
+import AdminRoute from "./AdminRoute";
 const RouterNav = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login/>} />
-                <Route path='/Dashboard' element={<Dashboard/>} >
+                <Route path='/Dashboard' element={<AdminRoute><Dashboard/></AdminRoute>} >
                     {/* Product Route */}
                     <Route path="/Dashboard/add-product" element={<AddProduct />} />
                     <Route path="/Dashboard/list-product" element={< ListProduct/>} />

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Grid, Box, Typography,Paper, FormControl, TextField, Button} from '@mui/material'
+import {Grid, Box, Typography,Paper, FormControl, TextField, Button, CircularProgress} from '@mui/material'
 import {useForm} from "react-hook-form";
 import UseAPI from "../../Hooks/UseAPI";
 import {AuthContext} from "../../Context/AuthContext";
@@ -8,9 +8,8 @@ const Login = () => {
     const {userLogin} = UseAPI()
     const navigate = useNavigate()
     const {isFetching, dispatch} = useContext(AuthContext)
-    const { register, handleSubmit} = useForm();
+    const {register, handleSubmit} = useForm();
     const onSubmit = (data,e) =>{
-        console.log('Date: ', data)
         userLogin(data, dispatch, navigate)
     }
     return (
@@ -43,7 +42,7 @@ const Login = () => {
                                     sx={{mb: 3}}
                                 />
                             </FormControl>
-                            <Button fullWidth className="loginBtn" type="submit" variant="contained">Login</Button>
+                            <Button fullWidth className="loginBtn" type="submit" variant="contained">{isFetching ? <CircularProgress size="25px" sx={{color: "white"}}/> : "Login"}</Button>
                         </form>
                     </Paper>
                 </Grid>
