@@ -18,10 +18,12 @@ import ListBrand from "../Components/Brand/ListBrand";
 import Income from "../Components/Income/Income";
 import Sales from "../Components/Sales/Sales";
 import ListStock from "../Components/Stock/ListStock";
+import Login from "../Pages/Login/Login";
 const RouterNav = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Login/>} />
                 <Route path='/Dashboard' element={<Dashboard/>} >
                     {/* Product Route */}
                     <Route path="/Dashboard/add-product" element={<AddProduct />} />
