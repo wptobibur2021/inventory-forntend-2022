@@ -8,11 +8,14 @@ const LeftSideBar = () => {
     const [brandtOpen, setBrandOpen] = useState(false);
     const [employeeOpen, setEmployeeOpen] = useState(false);
     const [stock, setStock] = useState(false);
+    const [cost, setCost] = useState(false);
 
     const handleStock = () =>{
         setStock(!stock);
     }
-
+    const handleCost = () =>{
+        setCost(!cost);
+    }
     const handleClick = () => {
        setOpen(!open);
     };
@@ -103,7 +106,7 @@ const LeftSideBar = () => {
                     </Collapse>
                     <Divider />
 
-                    {/* Brand Menu */}
+                    {/* Employee Menu */}
 
                     <ListItemButton onClick={handleEmployee}>
                         <ListItemIcon>
@@ -191,6 +194,36 @@ const LeftSideBar = () => {
                         </List>
                     </Collapse>
                     <Divider />
+                    {/* Cost Menu */}
+                    <ListItemButton onClick={handleCost}>
+                        <ListItemIcon>
+                            <Inventory2 />
+                        </ListItemIcon>
+                        <ListItemText primary="Cost Management" />
+                        {cost ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={cost} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/cost">
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <AddBox/>
+                                    </ListItemIcon>
+                                    <ListItemText primary="Add Cost" />
+                                </ListItemButton>
+                            </Link>
+                            <Divider />
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/list-cost">
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <ViewList/>
+                                    </ListItemIcon>
+                                    <ListItemText primary="All Cost" />
+                                </ListItemButton>
+                            </Link>
+                        </List>
+                    </Collapse>
+                    <Divider />
                     <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/cart">
                         <ListItemButton>
                             <ListItemIcon>
@@ -233,6 +266,24 @@ const LeftSideBar = () => {
                                 <PersonOutline />
                             </ListItemIcon>
                             <ListItemText primary="Income" />
+                        </ListItemButton>
+                    </Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/damage">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <PersonOutline />
+                            </ListItemIcon>
+                            <ListItemText primary="Damage"/>
+                        </ListItemButton>
+                    </Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/cost">
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <PersonOutline />
+                            </ListItemIcon>
+                            <ListItemText primary="Cost"/>
                         </ListItemButton>
                     </Link>
                     <Divider />

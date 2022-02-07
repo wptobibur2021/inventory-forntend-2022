@@ -20,6 +20,9 @@ import Sales from "../Components/Sales/Sales";
 import ListStock from "../Components/Stock/ListStock";
 import Login from "../Pages/Login/Login";
 import AdminRoute from "./AdminRoute";
+import Damage from "../Components/Damage/Damage";
+import Cost from "../Components/Cost/Cost";
+import CostList from "../Components/Cost/CostList";
 const RouterNav = () => {
     return (
         <BrowserRouter>
@@ -50,6 +53,11 @@ const RouterNav = () => {
                     <Route path="/Dashboard/income" element={<Income/>} />
                     <Route path="/Dashboard/sales" element={<Sales/>} />
                     <Route path="/Dashboard/cart" element={<Cart/>} />
+                    /* Damage */
+                    <Route path="/Dashboard/damage" element={<Damage/>} />
+                    /* Cost */
+                    <Route path="/Dashboard/cost" element={<Cost/>}></Route>
+                    <Route path="/Dashboard/list-cost" element={<CostList/>} />
                 </Route>
             </Routes>
         </BrowserRouter>

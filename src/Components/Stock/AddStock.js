@@ -11,6 +11,7 @@ const AddStock = () => {
         productGet(setProducts)
     },[])
     const onSubmit = (data, e) =>{
+        console.log('Data: ', data)
         stockCreate(data,e)
     };
     return (

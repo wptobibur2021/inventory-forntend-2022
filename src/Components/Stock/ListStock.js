@@ -1,17 +1,25 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import {Grid,Paper,Typography} from "@mui/material";
+import {Box, Grid, MenuItem, Paper, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import UseAPI from "../../Hooks/UseAPI";
-import {DeleteOutline} from "@mui/icons-material";
 
 export default function ListStock() {
     const imgUrl = "https://inventory-reactjs-2022.web.app/assets/products/"
     const [stocks, setStocks] = useState([])
-    const {stockGet} = UseAPI()
+    const {stockGet,brandGet} = UseAPI()
     useEffect(()=>{
         stockGet(setStocks)
     },[])
+    const [brands, setBrand] = useState([])
+    const [brandId, setBrandId] = useState(0)
+    // Get Employee From Database
+    useEffect(()=>{
+        brandGet(setBrand)
+    },[])
+    useEffect(()=>{
+        stockGet(setStocks, brandId)
+    },[brandId])
     console.log('Stock Product: ', stocks)
     const columns = [
         //const {productName} = row
@@ -28,7 +36,14 @@ export default function ListStock() {
                 );
             },
         },
-
+        {   field: 'brandName', headerName: 'Brand Name', width: 130, renderCell: (params) => {
+                return (
+                    <Typography variant="p">
+                        {params?.row?.productId?.brandName} Tk
+                    </Typography>
+                );
+            },
+        },
         {   field: 'salesPrice', headerName: 'Sales Price', width: 130, renderCell: (params) => {
                 return (
                     <Typography variant="p">
@@ -55,14 +70,34 @@ export default function ListStock() {
                 );
             },
         },
-
-
-
-
     ];
     return (
         <Grid sm={8} item md={8} xs={12}>
             <Paper elevation={3} sx={{p: 3}}>
+                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
+                    <Grid item sm={6} md={6} xs={12}>
+                        <Box sx={{mb: 2}}>
+                            <TextField
+                                label="Brand Name"
+                                select
+                                sx={{width: '100%'}}
+                                value={brandId}
+                                onChange={(e)=>setBrandId(e.target.value)}
+                            >
+                                {brands.map((option) => (
+                                    <MenuItem key={option._id} value={option._id}>
+                                        {option.brandName}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+                    </Grid>
+                    <Grid item sm={6} md={6} xs={12}>
+                        <Box sx={{mb: 2}}>
+                            <Typography variant="h6" sx={{textAlign: 'center', mb: 4}}>Total Orders: {stocks?.length}</Typography>
+                        </Box>
+                    </Grid>
+                </Grid>
                 <div style={{ height: 650, width: '100%' }}>
                     <DataGrid
                         rows={stocks}

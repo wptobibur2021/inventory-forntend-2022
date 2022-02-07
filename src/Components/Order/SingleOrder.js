@@ -23,7 +23,7 @@ const SingleOrder = () => {
     const {id} = useParams()
     const {singleOrder} = UseAPI()
     console.log('Id', id)
-    const {customerId, employeeId,carts,totalPrice} = order
+    const {customerId, employeeId,carts,totalPrice, ordersNo} = order
     useEffect(()=>{
         singleOrder(setOrder,id)
     },[])
@@ -76,6 +76,9 @@ const SingleOrder = () => {
                             <Typography variant="p">Address: {employeeId?.address}.</Typography>
                         </Box>
                     </Grid>
+                    <Typography sx={{textAlign:'center', paddingLeft:'240px', mt:3, textDecoration: 'underline' }} variant="h6" component="div">
+                        Order No: {ordersNo}
+                    </Typography>
                     <Divider />
                 </Grid>
 

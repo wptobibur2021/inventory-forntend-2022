@@ -2,6 +2,7 @@ import axios from "axios";
 import useNotification from "./useNotification";
 
 const UseAPI = () =>{
+    // https://shielded-retreat-11538.herokuapp.com/
     const url = "https://shielded-retreat-11538.herokuapp.com/api/"
     const {successNotify, errorNotify} = useNotification()
     /*
@@ -244,17 +245,25 @@ const UseAPI = () =>{
     }
 
     // Get Stock Item
-    const stockGet = (setStocks)=>{
+    const stockGet = (setStocks, brandId)=>{
         try{
-            axios.get(url + 'stock/all').then(res=>{
-                if(res.data){
-                    setStocks(res.data)
-                }
+            console.log('BrandId: ', brandId)
+            let queryUrl
+            if(brandId !== 0){
+                queryUrl = `http://localhost:5080/api/stock/all?brandId=${brandId}`
+                console.log('Query: ', queryUrl)
+            }else {
+                queryUrl = `http://localhost:5080/api/stock/all`
+                console.log('Query: ', queryUrl)
+            }
+            axios.get(queryUrl).then(res=>{
+                setStocks(res.data)
             })
         }catch (e) {
             errorNotify(e.response.message)
         }
     }
+
 
     // Stock Update By Item
     const stockUpdate = (id, data) =>{
@@ -357,18 +366,19 @@ const UseAPI = () =>{
         }
     }
 
-    const salesReport = (setSales,employeeId)=>{
+    const salesReport = (setSales,employeeId,pageNo,setTotalPageNo)=>{
         try{
             let queryUrl
             if(employeeId !== 0){
-                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/sales?employeeId=${employeeId}`
+                queryUrl = url+`order/sales?employeeId=${employeeId}&&page=${pageNo}`
                 console.log('Query: ', queryUrl)
             }else {
-                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/sales`
+                queryUrl = url+`order/sales?page=${pageNo}`
                 console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{
-                setSales(res.data)
+                setSales(res.data.result)
+                setTotalPageNo(res.data.totalPage)
             })
         }catch (e) {
 
@@ -392,6 +402,14 @@ const UseAPI = () =>{
         }catch (e) {
             errorNotify(e.response.message)
         }
+    }
+
+    const damageGet = (setDamage)=>{
+        axios.get(url+'damage/all').then(res=>{
+            if(res.data){
+                setDamage(res.data)
+            }
+        })
     }
 
     /*
@@ -441,8 +459,32 @@ const UseAPI = () =>{
     }
 
 
+    /*
+    * ===============
+    * COST API DECLARATION
+    * ===============
+    */
+
+    const costCreate = (data,e) =>{
+        axios.post(url+`cost/create`, data).then(res=>{
+            if(res.data){
+                successNotify('Cost Add Successfully')
+                e.target.reset()
+            }
+        })
+    }
+
+    const costGet = (setCost, pageNo, setTotalPage) =>{
+        axios.get(url + `cost/all?page=${pageNo}`).then(res=>{
+            if(res.data){
+                setCost(res.data.result)
+                setTotalPage(res.data.totalPage)
+            }
+        })
+    }
 
 
-    return{userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
+
+    return{costGet,costCreate,damageGet,userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
 }
 export default UseAPI

@@ -153,7 +153,7 @@ const AddProduct = () => {
                                     </Box>
                                 )}
                                 <label htmlFor="contained-button-file">
-                                    <Input required={true} sx={{display: 'none'}} accept=".jpg, .png, .jpeg" id="contained-button-file" onChange={(e)=>setFile(e.target.files[0])} type="file" />
+                                    <Input sx={{display: 'none'}} accept=".jpg, .png, .jpeg" id="contained-button-file" onChange={(e)=>setFile(e.target.files[0])} type="file" />
                                     <Button variant="contained" component="span">
                                         Upload
                                     </Button>

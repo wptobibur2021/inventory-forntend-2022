@@ -27,6 +27,8 @@ const UpdateModal = ({open, handleClose, data, orderId, order}) => {
         price+=cart.totalPrice
     })
 
+    console.log('Data: ', data)
+
    // useEffect(()=>{
    //     let price = 0
    //     const filterData = order?.carts?.filter((cart) => cart.productId._id !== productId)
@@ -46,9 +48,12 @@ const UpdateModal = ({open, handleClose, data, orderId, order}) => {
         const damageInfo = {
             productId: data.productId._id,
             quantity: damageQty,
-            price: damageQty*data.salesPrice,
+            totalPrice: damageQty * data.salesPrice,
+            salesPrice: data.salesPrice,
             comment: damageComment
         }
+
+        console.log('Damage Info: ', damageInfo)
         const returnInfo = {
             productId: data.productId._id,
             quantity: returnQty,
