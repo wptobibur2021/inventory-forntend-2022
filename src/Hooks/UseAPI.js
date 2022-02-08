@@ -250,10 +250,10 @@ const UseAPI = () =>{
             console.log('BrandId: ', brandId)
             let queryUrl
             if(brandId !== 0){
-                queryUrl = `http://localhost:5080/api/stock/all?brandId=${brandId}`
+                queryUrl = url+ `stock/all?brandId=${brandId}`
                 console.log('Query: ', queryUrl)
             }else {
-                queryUrl = `http://localhost:5080/api/stock/all`
+                queryUrl = url+ `stock/all`
                 console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{
@@ -319,13 +319,12 @@ const UseAPI = () =>{
 
     const orderGet = (setOrders, employeeId) =>{
         try{
-            console.log('Query: ', employeeId)
             let queryUrl
             if(employeeId !== 0){
-                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/all?employeeId=${employeeId}`
+                queryUrl = url+ `order/all?employeeId=${employeeId}`
                 console.log('Query: ', queryUrl)
             }else {
-                queryUrl = `https://shielded-retreat-11538.herokuapp.com/api/order/all`
+                queryUrl = url+ `order/all`
                 console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{

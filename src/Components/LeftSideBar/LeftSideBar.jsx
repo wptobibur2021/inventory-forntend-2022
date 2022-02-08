@@ -278,15 +278,6 @@ const LeftSideBar = () => {
                         </ListItemButton>
                     </Link>
                     <Divider />
-                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/cost">
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <PersonOutline />
-                            </ListItemIcon>
-                            <ListItemText primary="Cost"/>
-                        </ListItemButton>
-                    </Link>
-                    <Divider />
                     <Link style={{ textDecoration: 'none', color: '#000' }} to="/Dashboard/sales">
                         <ListItemButton>
                             <ListItemIcon>
