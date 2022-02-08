@@ -2,8 +2,11 @@ import axios from "axios";
 import useNotification from "./useNotification";
 
 const UseAPI = () =>{
-    // https://shielded-retreat-11538.herokuapp.com/
-    const url = "http://localhost:5080/api/"
+    /*
+    * Local: http://localhost:5080/api/
+    * Online: https://shielded-retreat-11538.herokuapp.com/
+    * */
+    const url = "https://shielded-retreat-11538.herokuapp.com/api/"
     const {successNotify, errorNotify} = useNotification()
     /*
     * ===============
