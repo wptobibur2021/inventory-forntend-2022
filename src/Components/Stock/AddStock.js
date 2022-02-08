@@ -6,12 +6,21 @@ import UseAPI from "../../Hooks/UseAPI";
 const AddStock = () => {
     const { register, handleSubmit} = useForm();
     const [products, setProducts] = useState([])
-    const {productGet,stockCreate} = UseAPI()
+    const {productGet,stockCreate,brandGet} = UseAPI()
+    const [brands, setBrand] = useState([])
     useEffect(()=>{
         productGet(setProducts)
     },[])
+    // Get Employee From Database
+    useEffect(()=>{
+        brandGet(setBrand)
+    },[])
+
     const onSubmit = (data, e) =>{
-        console.log('Data: ', data)
+        const productId = products.find((id)=>id._id === data.productId)
+        console.log('Product Id: ', productId.brandName)
+        data.brandName = productId.brandName
+        data.catName = productId.categoryName
         stockCreate(data,e)
     };
     return (
@@ -19,7 +28,6 @@ const AddStock = () => {
             <Paper elevation={3} sx={{p: 5}}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
-
                         <Grid item sm={6} md={6} xs={12}>
                             <Box sx={{mb: 2}}>
                                 <TextField

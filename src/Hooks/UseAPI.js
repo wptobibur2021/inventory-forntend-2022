@@ -3,7 +3,7 @@ import useNotification from "./useNotification";
 
 const UseAPI = () =>{
     // https://shielded-retreat-11538.herokuapp.com/
-    const url = "https://shielded-retreat-11538.herokuapp.com/api/"
+    const url = "http://localhost:5080/api/"
     const {successNotify, errorNotify} = useNotification()
     /*
     * ===============
@@ -245,17 +245,21 @@ const UseAPI = () =>{
     }
 
     // Get Stock Item
-    const stockGet = (setStocks, brandId)=>{
+    const stockGet = (setStocks, brandName)=>{
         try{
-            console.log('BrandId: ', brandId)
             let queryUrl
-            if(brandId !== 0){
-                queryUrl = url+ `stock/all?brandId=${brandId}`
-                console.log('Query: ', queryUrl)
-            }else {
-                queryUrl = url+ `stock/all`
-                console.log('Query: ', queryUrl)
+            if(brandName){
+                if(brandName !== ''){
+                    queryUrl = url+`stock/all?brandName=${brandName}`
+                    console.log('Query: ', queryUrl)
+                }else {
+                    queryUrl = url+`stock/all`
+                    console.log('Query: ', queryUrl)
+                }
+            }else{
+                queryUrl = url+`stock/all`
             }
+
             axios.get(queryUrl).then(res=>{
                 setStocks(res.data)
             })
@@ -268,11 +272,7 @@ const UseAPI = () =>{
     // Stock Update By Item
     const stockUpdate = (id, data) =>{
         try{
-            axios.put(url+ 'stock/update/' + id, data).then(res=>{
-                if(res.data){
-                    successNotify("Cart Add Successfully")
-                }
-            })
+            axios.put(url+ 'stock/update/' + id, data).then(res=>{})
         }catch (e) {
             errorNotify(e.response.message)
         }
@@ -319,12 +319,13 @@ const UseAPI = () =>{
 
     const orderGet = (setOrders, employeeId) =>{
         try{
+            console.log('Query: ', employeeId)
             let queryUrl
             if(employeeId !== 0){
-                queryUrl = url+ `order/all?employeeId=${employeeId}`
+                queryUrl = url+`order/all?employeeId=${employeeId}`
                 console.log('Query: ', queryUrl)
             }else {
-                queryUrl = url+ `order/all`
+                queryUrl = url+`order/all`
                 console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{

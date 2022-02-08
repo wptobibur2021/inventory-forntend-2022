@@ -29,7 +29,6 @@ const CartModal = ({open, handleClose, data}) => {
         const updateQty = {
             productQty: data.productQty-qty
         }
-        console.log('Stock:', updateQty)
         stockUpdate(stockId,updateQty)
         cartCreate(dataInfo,e)
         handleClose()

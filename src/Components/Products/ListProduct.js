@@ -52,7 +52,7 @@ export default function ListProduct() {
         {   field: 'categoryName', headerName: 'Category Name', width: 150, renderCell: (params) => {
                 return (
                     <Typography variant="p">
-                        {params?.row?.catId?.categoryName}
+                        {params?.row?.categoryName}
                     </Typography>
                 );
             },
@@ -60,7 +60,7 @@ export default function ListProduct() {
         {   field: 'brandName', headerName: 'Brand Name', width: 130, renderCell: (params) => {
                 return (
                     <Typography variant="p">
-                        {params?.row?.brandId?.brandName}
+                        {params?.row?.brandName}
                     </Typography>
                 );
             },
@@ -73,13 +73,6 @@ export default function ListProduct() {
             renderCell: (params) => {
                 return (
                     <>
-                        {/*<Link to={"/product/" + params.row._id}>*/}
-                        {/*    <button className="productListEdit">Edit</button>*/}
-                        {/*</Link>*/}
-                        {/*<ShoppingCart*/}
-                        {/*    sx={{cursor: 'pointer', mx: 2, color: 'red'}}*/}
-                        {/*    onClick={() => addToCart(params.row._id)}*/}
-                        {/*/>*/}
                         <DeleteOutline
                             sx={{cursor: 'pointer', mx: 2, color: 'red'}}
                             onClick={() => handleDelete(params.row._id)}

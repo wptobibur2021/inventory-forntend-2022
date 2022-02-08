@@ -30,7 +30,7 @@ const AddProduct = () => {
             fileData.append('file', file);
             data.img = fileName
             try{
-                axios.post('http://localhost:7080/api/upload', fileData)
+                axios.post('http://localhost:5080/api/upload', fileData)
             }catch (e) {
                 console.log(e.message)
             }
@@ -72,11 +72,11 @@ const AddProduct = () => {
                                     label="Category"
                                     select
                                     sx={{width: '100%'}}
-                                    {...register('catId')}
+                                    {...register('categoryName')}
                                     required={true}
                                 >
                                     {cats.map((option) => (
-                                        <MenuItem key={option._id} value={option._id}>
+                                        <MenuItem key={option._id} value={option.categoryName}>
                                             {option.categoryName}
                                         </MenuItem>
                                     ))}
@@ -89,11 +89,11 @@ const AddProduct = () => {
                                     label="Brand"
                                     select
                                     sx={{width: '100%'}}
-                                    {...register('brandId')}
+                                    {...register('brandName')}
                                     required={true}
                                 >
                                     {brand.map((option) => (
-                                        <MenuItem key={option._id} value={option._id}>
+                                        <MenuItem key={option._id} value={option.brandName}>
                                             {option.brandName}
                                         </MenuItem>
                                     ))}

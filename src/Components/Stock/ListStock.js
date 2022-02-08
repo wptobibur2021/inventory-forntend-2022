@@ -12,14 +12,14 @@ export default function ListStock() {
         stockGet(setStocks)
     },[])
     const [brands, setBrand] = useState([])
-    const [brandId, setBrandId] = useState(0)
+    const [brandName, setBrandName] = useState('')
     // Get Employee From Database
     useEffect(()=>{
         brandGet(setBrand)
     },[])
     useEffect(()=>{
-        stockGet(setStocks, brandId)
-    },[brandId])
+        stockGet(setStocks, brandName)
+    },[brandName])
     console.log('Stock Product: ', stocks)
     const columns = [
         //const {productName} = row
@@ -39,7 +39,7 @@ export default function ListStock() {
         {   field: 'brandName', headerName: 'Brand Name', width: 130, renderCell: (params) => {
                 return (
                     <Typography variant="p">
-                        {params?.row?.productId?.brandName} Tk
+                        {params?.row?.productId?.brandName}
                     </Typography>
                 );
             },
@@ -81,11 +81,11 @@ export default function ListStock() {
                                 label="Brand Name"
                                 select
                                 sx={{width: '100%'}}
-                                value={brandId}
-                                onChange={(e)=>setBrandId(e.target.value)}
+                                value={brandName}
+                                onChange={(e)=>setBrandName(e.target.value)}
                             >
                                 {brands.map((option) => (
-                                    <MenuItem key={option._id} value={option._id}>
+                                    <MenuItem key={option._id} value={option.brandName}>
                                         {option.brandName}
                                     </MenuItem>
                                 ))}
