@@ -307,6 +307,7 @@ const UseAPI = () =>{
     * ===============
     */
 
+    /* Order create function declaration below */
     const orderCreate = (data,e)=>{
         try{
             axios.post(url + 'order/create', data).then(res=>{
@@ -319,17 +320,14 @@ const UseAPI = () =>{
             errorNotify(e.response.message)
         }
     }
-
+    /* Order get function declaration below */
     const orderGet = (setOrders, employeeId) =>{
         try{
-            console.log('Query: ', employeeId)
             let queryUrl
             if(employeeId !== 0){
                 queryUrl = url+`order/all?employeeId=${employeeId}`
-                console.log('Query: ', queryUrl)
             }else {
                 queryUrl = url+`order/all`
-                console.log('Query: ', queryUrl)
             }
             axios.get(queryUrl).then(res=>{
                 setOrders(res.data)
@@ -338,7 +336,7 @@ const UseAPI = () =>{
             errorNotify(e.response.message)
         }
     }
-
+    /* Order single function declaration below */
     const singleOrder = (setOrder,id)=>{
         try{
             axios.get(url + 'order/single/' +id).then(res=>{
@@ -348,7 +346,7 @@ const UseAPI = () =>{
             errorNotify(e.response.message)
         }
     }
-
+    /* Order update function declaration below */
     const updateOrder = (id, data) =>{
         try{
             axios.put(url + 'order/update/' +id, data).then(res=>{
@@ -358,7 +356,7 @@ const UseAPI = () =>{
             errorNotify(e.response.message)
         }
     }
-
+    /* Monthly Income function declaration below */
     const monthlyIncome = ()=>{
         try{
             axios.get(url + 'order/income').then(res=>{
@@ -372,18 +370,32 @@ const UseAPI = () =>{
     const salesReport = (setSales,employeeId,pageNo,setTotalPageNo)=>{
         try{
             let queryUrl
-            if(employeeId !== 0){
-                queryUrl = url+`order/sales?employeeId=${employeeId}&&page=${pageNo}`
-                console.log('Query: ', queryUrl)
-            }else {
-                queryUrl = url+`order/sales?page=${pageNo}`
-                console.log('Query: ', queryUrl)
-            }
-            axios.get(queryUrl).then(res=>{
-                setSales(res.data.result)
-                setTotalPageNo(res.data.totalPage)
-            })
+                if(employeeId !== 0){
+                    queryUrl = url+`order/sales?employeeId=${employeeId}&&page=${pageNo}`
+                    console.log('Query: ', queryUrl)
+                }else {
+                    queryUrl = url+`order/sales?page=${pageNo}`
+                    console.log('Query: ', queryUrl)
+                }
+                axios.get(queryUrl).then(res=>{
+                    setSales(res.data.result)
+                    setTotalPageNo(res.data.totalPage)
+                })
         }catch (e) {
+            console.log(e.response.message)
+        }
+    }
+
+    /* Total sale report */
+
+    const totalSales = (setSales) =>{
+        try{
+            axios.get(url+ `order/totalSales`).then(res=>{
+                if(res.data){
+                    setSales(res.data)
+                }
+            })
+        }catch(e){
 
         }
     }
@@ -485,9 +497,16 @@ const UseAPI = () =>{
             }
         })
     }
+    const costReport = (setCost) =>{
+        axios.get(url+'cost/report').then(res=>{
+            if(res.data){
+                setCost(res.data)
+            }
+        })
+    }
 
 
 
-    return{costGet,costCreate,damageGet,userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
+    return{totalSales,costReport,costGet,costCreate,damageGet,userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
 }
 export default UseAPI

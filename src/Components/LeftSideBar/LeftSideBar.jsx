@@ -34,7 +34,7 @@ const LeftSideBar = () => {
         <Grid item xs={12} sm={3} md={3}>
             <Paper elevation={3}>
                 <List>
-                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard">
+                    <Link style={{ textDecoration: 'none', color: '#000' }} to="/dashboard/home">
                         <ListItemButton>
                             <ListItemIcon>
                                 <Dashboard />

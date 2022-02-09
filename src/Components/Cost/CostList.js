@@ -14,7 +14,7 @@ const CostList = () => {
     const handleChange = (event, value) =>{
         setPageNo(value - 1);
     }
-    console.log('Costs: ', costs)
+    console.log('Costs: ', costs, 'Total Page: ', totalPage)
     return (
         <Grid item xs={12} sm={8} md={8}>
             <Paper elevation={3} sx={{p: 5}}>

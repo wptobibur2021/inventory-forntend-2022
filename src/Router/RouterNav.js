@@ -23,12 +23,14 @@ import AdminRoute from "./AdminRoute";
 import Damage from "../Components/Damage/Damage";
 import Cost from "../Components/Cost/Cost";
 import CostList from "../Components/Cost/CostList";
+import Home from "../Components/Dashboard/Home";
 const RouterNav = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login/>} />
                 <Route path='/Dashboard' element={<AdminRoute><Dashboard/></AdminRoute>} >
+                    <Route path="/Dashboard/home" element={<Home/>} />
                     {/* Product Route */}
                     <Route path="/Dashboard/add-product" element={<AddProduct />} />
                     <Route path="/Dashboard/list-product" element={< ListProduct/>} />
