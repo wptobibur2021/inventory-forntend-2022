@@ -357,12 +357,30 @@ const UseAPI = () =>{
         }
     }
     /* Monthly Income function declaration below */
-    const monthlyIncome = ()=>{
+    // const monthlyIncome = (data)=>{
+    //     try{
+    //         axios.post(url + 'order/income', data).then(res=>{
+    //             console.log('Data : ', res.data)
+    //         })
+    //     }catch (e) {
+    //         errorNotify(e.response.message)
+    //     }
+    // }
+
+    const monthlyIncome = (setIncome) =>{
         try{
-            axios.get(url + 'order/income').then(res=>{
-                console.log('Data : ', res.data)
+            axios.get(url + 'order/monthlyIncome').then(res=>{
+                const incomeData = [];
+               res.data.map(item=>{
+                   incomeData.push({
+                        Name: item._id,
+                       TotalSales: item.total
+                   })
+               })
+                setIncome(incomeData)
+                console.log('Income Data: ', res.data)
             })
-        }catch (e) {
+        }catch(e){
             errorNotify(e.response.message)
         }
     }
@@ -427,6 +445,26 @@ const UseAPI = () =>{
         })
     }
 
+    const monthlyDamage = (setDamages) =>{
+        try{
+            axios.get(url+'damage/damageMonthly').then(res=>{
+                const damage = []
+                if(res.data){
+                    res.data.map((item)=>{
+                        damage.push({
+                           month:item._id,
+                            total: item.total
+                        })
+                    })
+                }
+                console.log('Backend Damage: ', res.data)
+                setDamages(damage)
+            })
+        }catch (e) {
+            console.log(e.response.data)
+        }
+    }
+
     /*
     * ===============
     *   DAMAGE API DECLARATION
@@ -458,7 +496,7 @@ const UseAPI = () =>{
             axios.post(url + 'user/login', data).then(res=>{
                 if(res.data){
                     dispatch({type: "LOGIN_SUCCESS", payload: res.data})
-                    navigate('/dashboard')
+                    navigate('/dashboard/home')
                     successNotify('User login has been successfully')
                 }
             })
@@ -504,9 +542,21 @@ const UseAPI = () =>{
             }
         })
     }
-
-
-
-    return{totalSales,costReport,costGet,costCreate,damageGet,userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
+    /* Monthly Cost Report */
+    const monthlyCost = (setCosts) =>{
+        axios.get(url+'cost/monthlyCost').then(res=>{
+            const cost = []
+            if(res.data){
+                res.data.map((item)=>{
+                    cost.push({
+                        Name: item._id,
+                        Total: item.total
+                    })
+                })
+            }
+            setCosts(cost)
+        })
+    }
+    return{monthlyDamage,monthlyCost,totalSales,costReport,costGet,costCreate,damageGet,userLogOut,userLogin,salesReport,monthlyIncome,brandDelete,deleteStock,returnStockUpdate,updateOrder,damageCreate,returnCreate,stockUpdate,deleteCart,singleOrder,orderGet,orderCreate,employeeGet,customerGet,stockGet,stockCreate,brandGet,customerCreate,employeeCreate,cartGet,cartCreate,categoryDelete,categoryGet,productCreate, categoryCreate, brandCreate, productGet, productDelete}
 }
 export default UseAPI

@@ -23,7 +23,7 @@ import AdminRoute from "./AdminRoute";
 import Damage from "../Components/Damage/Damage";
 import Cost from "../Components/Cost/Cost";
 import CostList from "../Components/Cost/CostList";
-import Home from "../Components/Dashboard/Home";
+import Home from "../Components/DashboardHome/Home";
 const RouterNav = () => {
     return (
         <BrowserRouter>
